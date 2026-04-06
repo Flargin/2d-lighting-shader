@@ -1,1 +1,1 @@
-color = #fff100;
+color = #FFFF00;

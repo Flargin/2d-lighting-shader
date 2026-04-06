@@ -32,6 +32,7 @@
     {"id":{"name":"obj_wall","path":"objects/obj_wall/obj_wall.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
     {"id":{"name":"shd_cutout","path":"shaders/shd_cutout/shd_cutout.yy",},},
+    {"id":{"name":"shd_hard_step","path":"shaders/shd_hard_step/shd_hard_step.yy",},},
     {"id":{"name":"shd_stroke","path":"shaders/shd_stroke/shd_stroke.yy",},},
     {"id":{"name":"spr_background","path":"sprites/spr_background/spr_background.yy",},},
     {"id":{"name":"spr_lamp","path":"sprites/spr_lamp/spr_lamp.yy",},},

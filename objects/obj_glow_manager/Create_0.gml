@@ -12,4 +12,4 @@ HEIGHT = sprite_get_height(spr_background);
 
 step = 0;
 
-shader = shd_stroke;
+shader = shd_hard_step;

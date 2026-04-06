@@ -15,22 +15,19 @@ void main()
 {
     vec4 color = texture2D(gm_BaseTexture, v_vTexcoord);
     
-    float FALLOFF = 5.0;
+    float FALLOFF_WIDTH = 20.0;
     
-    for(int i = 0; i < circleCount; i++) {
+    /*for(int i = 0; i < circleCount; i++) {
         float dist = distance(v_vTexcoord * screenSize, circlePos[i]);
         if(dist < circleRadius[i] + FALLOFF) {
             color.rgb = (circleColor[i] / 255.0);
             color.a = 0.5;
         }
-    }
+    }*/
     
     for(int i = 0; i < circleCount; i++) {
         float dist = distance(v_vTexcoord * screenSize, circlePos[i]);
-        if(dist < circleRadius[i]) {
-            color.rgb = (circleColor[i] / 255.0);
-            color.a = 0.25;
-        }
+        color.a = clamp(dist/FALLOFF_WIDTH - circleRadius[i]/FALLOFF_WIDTH, 0., 1.);
     }
     
     gl_FragColor = color;
