@@ -1,4 +1,5 @@
 var count = 0;
+var wall_count = 0;
 
 with(obj_player) {
     other.circle_pos[count*2] = x;
@@ -13,11 +14,19 @@ with(obj_player) {
 with(obj_lamp) {
     other.circle_pos[count*2] = x;
     other.circle_pos[count*2 + 1] = y;
-    other.circle_radius[count] = 100;
+    other.circle_radius[count] = glow_radius;
     other.circle_color[count*3] = colour_get_red(color);
     other.circle_color[count*3 + 1] = colour_get_green(color);
     other.circle_color[count*3 + 2] = colour_get_blue(color);
     count++;
+}
+
+with(obj_wall) {
+    other.wall_points[wall_count*4] = x;
+    other.wall_points[wall_count*4 + 1] = y;
+    other.wall_points[wall_count*4 + 2] = x + sprite_width;
+    other.wall_points[wall_count*4 + 3] = y + sprite_height;
+    wall_count++;
 }
 
 
@@ -46,6 +55,13 @@ shader_set(shader);
     var screenSize = shader_get_uniform(shader, "screenSize");
     var currentStep = shader_get_uniform(shader, "currentStep");
     var circleColor = shader_get_uniform(shader, "circleColor");
+    
+    //for shd_visibility
+    var u_resolution = shader_get_uniform(shader, "u_resolution");
+    var u_mouse = shader_get_uniform(shader, "u_mouse");
+    var u_rect_count = shader_get_uniform(shader, "u_rect_count");
+    var u_rects = shader_get_uniform(shader, "u_rects");
+
 
     shader_set_uniform_f_array(circlePos, circle_pos);
     shader_set_uniform_f_array(circleRadius, circle_radius);
@@ -53,6 +69,12 @@ shader_set(shader);
     shader_set_uniform_f_array(screenSize, [WIDTH, HEIGHT]);
     shader_set_uniform_f(currentStep, step);
     shader_set_uniform_f_array(circleColor, circle_color);
+
+    //for shd_visibility
+    shader_set_uniform_f(u_resolution, surface_get_width(surf), surface_get_height(surf));
+    shader_set_uniform_f(u_mouse, obj_player.x, obj_player.y);
+    shader_set_uniform_i(u_rect_count, wall_count);
+    shader_set_uniform_f_array(u_rects, wall_points);
 
     draw_surface(surf, 0, 0);
 shader_reset();

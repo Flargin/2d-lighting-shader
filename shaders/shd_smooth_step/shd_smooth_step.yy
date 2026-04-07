@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"shd_smooth_step",
+  "name":"shd_smooth_step",
+  "parent":{
+    "name":"shaders",
+    "path":"folders/shaders.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

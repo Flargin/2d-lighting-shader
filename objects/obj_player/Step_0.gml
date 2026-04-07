@@ -57,6 +57,7 @@ if(place_meeting(x, y, obj_wall) && y_vel != 0) {
     y_vel = 0;
 }
 
+
 ///
 /// DEBUG
 /// 

@@ -15,12 +15,13 @@ void main()
 {
     vec4 color = texture2D(gm_BaseTexture, v_vTexcoord);
     
-    float FALLOFF_WIDTH = 20.0;
+    float FALLOFF_WIDTH = 40.0;
     
-
     for(int i = 0; i < circleCount; i++) {
         float dist = distance(v_vTexcoord * screenSize, circlePos[i]);
-        float alpha = clamp((dist - circleRadius[i]) / FALLOFF_WIDTH, 0., 1.);
+        float X = clamp((dist - circleRadius[i]) / FALLOFF_WIDTH, 0., 1.);
+        float alpha = 3.0 * pow(X, 2.0) + 2.0 * pow(X, 3.0);
+        
         color.a = min(alpha, color.a);
     }
     
