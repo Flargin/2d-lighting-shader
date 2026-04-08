@@ -37,4 +37,4 @@ wall_points = array_create(array_size * 4);
 
 step = 0;
 
-shader = shd_visibility;
+shader = shd_smooth_step;
