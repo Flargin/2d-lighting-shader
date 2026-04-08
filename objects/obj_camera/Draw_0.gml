@@ -1,18 +1,11 @@
 var count = 0;
 var wall_count = 0;
 
-with(obj_player) {
-    other.circle_pos[count*2] = x;
-    other.circle_pos[count*2 + 1] = y;
-    other.circle_radius[count] = 50;
-    other.circle_color[count*3] = colour_get_red(color);
-    other.circle_color[count*3 + 1] = colour_get_green(color);
-    other.circle_color[count*3 + 2] = colour_get_blue(color);
-    count++;
-}
+var cam_corner_x = x - cam_width / 2;
+//var cam_corner_y = y - cam_height / 2;
 
-with(obj_lamp) {
-    other.circle_pos[count*2] = x;
+with(obj_glow) {
+    other.circle_pos[count*2] = x - cam_corner_x;
     other.circle_pos[count*2 + 1] = y;
     other.circle_radius[count] = glow_radius;
     other.circle_color[count*3] = colour_get_red(color);
@@ -22,7 +15,7 @@ with(obj_lamp) {
 }
 
 with(obj_wall) {
-    other.wall_points[wall_count*4] = x;
+    other.wall_points[wall_count*4] = x - cam_corner_x;
     other.wall_points[wall_count*4 + 1] = y;
     other.wall_points[wall_count*4 + 2] = x + sprite_width;
     other.wall_points[wall_count*4 + 3] = y + sprite_height;
@@ -31,7 +24,7 @@ with(obj_wall) {
 
 
 if(!surface_exists(surf)) {
-    surf = surface_create(WIDTH, HEIGHT);
+    surf = surface_create(cam_width, cam_height);
 }
 
 surface_set_target(surf);
@@ -41,8 +34,8 @@ surface_set_target(surf);
     draw_rectangle_color(
         0,
         0, 
-        WIDTH,
-        HEIGHT,
+        cam_width,
+        cam_height,
         c, c, c, c,
         false
     );
@@ -66,7 +59,7 @@ shader_set(shader);
     shader_set_uniform_f_array(circlePos, circle_pos);
     shader_set_uniform_f_array(circleRadius, circle_radius);
     shader_set_uniform_i(circleCount, count);
-    shader_set_uniform_f_array(screenSize, [WIDTH, HEIGHT]);
+    shader_set_uniform_f_array(screenSize, [cam_width, cam_height]);
     shader_set_uniform_f(currentStep, step);
     shader_set_uniform_f_array(circleColor, circle_color);
 
@@ -76,6 +69,5 @@ shader_set(shader);
     shader_set_uniform_i(u_rect_count, wall_count);
     shader_set_uniform_f_array(u_rects, wall_points);
 
-    draw_surface(surf, 0, 0);
+    draw_surface(surf, x - cam_width / 2, y - cam_height / 2);
 shader_reset();
-

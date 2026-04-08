@@ -20,7 +20,7 @@ void main()
     for(int i = 0; i < circleCount; i++) {
         float dist = distance(v_vTexcoord * screenSize, circlePos[i]);
         if(dist < circleRadius[i] + FALLOFF) {
-            color.rgb = (circleColor[i] / 255.0);
+            //color.rgb = (circleColor[i] / 255.0);
             color.a = 0.5;
         }
     }
@@ -28,7 +28,7 @@ void main()
     for(int i = 0; i < circleCount; i++) {
         float dist = distance(v_vTexcoord * screenSize, circlePos[i]);
         if(dist < circleRadius[i]) {
-            color.rgb = (circleColor[i] / 255.0);
+            //color.rgb = (circleColor[i] / 255.0);
             color.a = 0.25;
         }
     }

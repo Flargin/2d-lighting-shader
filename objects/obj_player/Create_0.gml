@@ -11,3 +11,4 @@ angle = 0;
 spd = 0;
 
 color = #FFFFFF;
+glow_radius = 200;
