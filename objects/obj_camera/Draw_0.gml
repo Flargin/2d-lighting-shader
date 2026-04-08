@@ -4,22 +4,26 @@ var wall_count = 0;
 var cam_corner_x = x - cam_width / 2;
 //var cam_corner_y = y - cam_height / 2;
 
-with(obj_glow) {
-    other.circle_pos[count*2] = x - cam_corner_x;
-    other.circle_pos[count*2 + 1] = y;
-    other.circle_radius[count] = glow_radius;
-    other.circle_color[count*3] = colour_get_red(color);
-    other.circle_color[count*3 + 1] = colour_get_green(color);
-    other.circle_color[count*3 + 2] = colour_get_blue(color);
-    count++;
+with(obj_glow) {   
+    if(distance_to_object(obj_camera) < 3000) { 
+        other.circle_pos[count*2] = x - cam_corner_x;
+        other.circle_pos[count*2 + 1] = y;
+        other.circle_radius[count] = glow_radius;
+        other.circle_color[count*3] = colour_get_red(color);
+        other.circle_color[count*3 + 1] = colour_get_green(color);
+        other.circle_color[count*3 + 2] = colour_get_blue(color);
+        count++;
+    }
 }
 
 with(obj_wall) {
-    other.wall_points[wall_count*4] = x - cam_corner_x;
-    other.wall_points[wall_count*4 + 1] = y;
-    other.wall_points[wall_count*4 + 2] = x + sprite_width;
-    other.wall_points[wall_count*4 + 3] = y + sprite_height;
-    wall_count++;
+    if(distance_to_object(obj_camera) < 3000) {
+         other.wall_points[wall_count*4] = x - cam_corner_x;
+         other.wall_points[wall_count*4 + 1] = y;
+         other.wall_points[wall_count*4 + 2] = x + sprite_width - cam_corner_x;
+         other.wall_points[wall_count*4 + 3] = y + sprite_height;
+         wall_count++;
+    }
 }
 
 
@@ -65,7 +69,7 @@ shader_set(shader);
 
     //for shd_visibility
     shader_set_uniform_f(u_resolution, surface_get_width(surf), surface_get_height(surf));
-    shader_set_uniform_f(u_mouse, obj_visibility.x, obj_visibility.y);
+    shader_set_uniform_f(u_mouse, obj_visibility.x - cam_corner_x, obj_visibility.y);
     shader_set_uniform_i(u_rect_count, wall_count);
     shader_set_uniform_f_array(u_rects, wall_points);
 

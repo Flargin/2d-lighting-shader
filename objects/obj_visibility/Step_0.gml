@@ -1,4 +1,4 @@
-if(mouse_check_button(mb_left)) {
+if(keyboard_check(ord("V"))) {
     x = mouse_x;
     y = mouse_y;
 }

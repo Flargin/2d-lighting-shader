@@ -45,7 +45,7 @@ if(keyboard_check_pressed(vk_right)) {
     x += cam_width;
     x_to += cam_width;
     zoom_x += cam_width;
-    shader = shd_off;
+    //shader = shd_off;
 } else if(keyboard_check_pressed(vk_left)) {
     x -= cam_width;
     x_to -= cam_width;
