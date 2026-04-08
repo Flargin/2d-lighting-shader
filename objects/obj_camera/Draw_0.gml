@@ -65,7 +65,7 @@ shader_set(shader);
 
     //for shd_visibility
     shader_set_uniform_f(u_resolution, surface_get_width(surf), surface_get_height(surf));
-    shader_set_uniform_f(u_mouse, obj_player.x, obj_player.y);
+    shader_set_uniform_f(u_mouse, obj_visibility.x, obj_visibility.y);
     shader_set_uniform_i(u_rect_count, wall_count);
     shader_set_uniform_f_array(u_rects, wall_points);
 

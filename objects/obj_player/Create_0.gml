@@ -5,7 +5,7 @@ accel = 0.2;
 decel = 0.5;
 
 SPD_MAX = 1;
-VEL_MAX = 5;
+VEL_MAX = 50;
 
 angle = 0;
 spd = 0;

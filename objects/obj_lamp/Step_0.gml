@@ -1,1 +1,1 @@
-glow_radius = 100 + 3 * dsin(current_time * speed_offset / 25 + start_offset);
+glow_radius = 250 + 10 * dsin(current_time * speed_offset / 25 + start_offset);

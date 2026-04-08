@@ -42,5 +42,26 @@ camera_set_view_pos(view_camera[0], zoom_x, zoom_y);
 
 
 if(keyboard_check_pressed(vk_right)) {
-    
+    x += cam_width;
+    x_to += cam_width;
+    zoom_x += cam_width;
+    shader = shd_off;
+} else if(keyboard_check_pressed(vk_left)) {
+    x -= cam_width;
+    x_to -= cam_width;
+    zoom_x -= cam_width;
+}
+
+if(follow_player && instance_nearest(x, y, obj_slide).shader != -1) {
+    shader = instance_nearest(x, y, obj_slide).shader;
+}
+
+
+
+///
+/// DEBUG
+/// 
+
+if(keyboard_check_released(ord("R"))) {
+    room_restart();
 }

@@ -1,0 +1,1 @@
+shader = shd_smooth_step;

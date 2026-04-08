@@ -1,6 +1,3 @@
-//
-// Simple passthrough fragment shader
-//
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
@@ -15,21 +12,16 @@ void main()
 {
     vec4 color = texture2D(gm_BaseTexture, v_vTexcoord);
     
-    float FALLOFF = 5.0;
-    
-    for(int i = 0; i < circleCount; i++) {
-        float dist = distance(v_vTexcoord * screenSize, circlePos[i]);
-        if(dist < circleRadius[i] + FALLOFF) {
-            //color.rgb = (circleColor[i] / 255.0);
-            color.a = 0.5;
-        }
-    }
+    float FALLOFF = 15.0;
     
     for(int i = 0; i < circleCount; i++) {
         float dist = distance(v_vTexcoord * screenSize, circlePos[i]);
         if(dist < circleRadius[i]) {
-            //color.rgb = (circleColor[i] / 255.0);
-            color.a = 0.25;
+            color.a = 0.0;
+        } else if(dist < circleRadius[i] + FALLOFF) {
+            color.a = min(color.a, 0.5);
+        } else {
+            color.a = min(color.a, 0.9);
         }
     }
     
