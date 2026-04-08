@@ -26,8 +26,11 @@
   },
   "name":"2-lighting-shader",
   "resources":[
-    {"id":{"name":"epic","path":"fonts/epic/epic.yy",},},
+    {"id":{"name":"fnt_body","path":"fonts/fnt_body/fnt_body.yy",},},
+    {"id":{"name":"fnt_main_title","path":"fonts/fnt_main_title/fnt_main_title.yy",},},
+    {"id":{"name":"fnt_title","path":"fonts/fnt_title/fnt_title.yy",},},
     {"id":{"name":"obj_camera","path":"objects/obj_camera/obj_camera.yy",},},
+    {"id":{"name":"obj_glow_title","path":"objects/obj_glow_title/obj_glow_title.yy",},},
     {"id":{"name":"obj_glow","path":"objects/obj_glow/obj_glow.yy",},},
     {"id":{"name":"obj_lamp","path":"objects/obj_lamp/obj_lamp.yy",},},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},},
